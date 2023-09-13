@@ -15,7 +15,7 @@ Mostly = [
   { id: 4, title: 'Matilda', views: 'Brown Boys Remix', imagePath: require('../assests/most1.png') },
   { id: 5, title: 'Going to Home', views: 'Call Remix', imagePath: require('../assests/most3.png') },
   { id: 6, title: 'Bug Finders', views: 'Bing Njui ama', imagePath: require('../assests/most1.png') },
-  { id: 7, title: 'Snooker Di Noe', views: 'Mnhj gy sads', imagePath: require('../assests/most2.png') },
+  { id: 7, title: 'Snooker Di Noe', views: 'Loreum Ipsum', imagePath: require('../assests/most2.png') },
   { id: 8, title: 'Shubh Njawd Lo...', views: 'Asynchrounous ', imagePath: require('../assests/most1.png') },
   { id: 9, title: 'Shubh Njawd Lo...', views: 'Asynchrounous ', imagePath: require('../assests/most1.png') },
 ];
