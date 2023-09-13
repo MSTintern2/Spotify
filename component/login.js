@@ -155,12 +155,9 @@ const Login = (props) => {
                 <Text style={{ fontSize: 16, fontWeight: 400, color: 'black' ,textAlign:'center'}}>{message}</Text>
               </View>
 
-              <View style={{ backgroundColor: '#42C83C', height: '20%', borderRadius: 10, alignItems: 'center', borderTopEndRadius: 0, borderTopStartRadius: 0, justifyContent: 'center' }} >
-              <Pressable
-                onPress={() => setModalVisible(!modalVisible)} >
+              <TouchableOpacity style={{ backgroundColor: '#42C83C', height: '20%', borderRadius: 10, alignItems: 'center', borderTopEndRadius: 0, borderTopStartRadius: 0, justifyContent: 'center' }}  onPress={() => setModalVisible(!modalVisible)} >
                   <Text style={styles.textStyle}>Ok</Text>
-              </Pressable>
-              </View>
+              </TouchableOpacity>
 
             </View>
           </View>
@@ -168,10 +165,7 @@ const Login = (props) => {
 
       </ScrollView>
     </SafeAreaView>
-
-
   )
-
 }
 const styles = StyleSheet.create({
   emailInput: {
