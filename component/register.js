@@ -60,10 +60,6 @@ await AsyncStorage.setItem('email',data.email)
   else {
     navigation.navigate('Home')
     setAsync();
-    console.log(data.name)
-    console.log(data.email)
-    console.log(data.password)
-
     setdata({
       name: '',
       email: '',

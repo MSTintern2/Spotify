@@ -3,12 +3,14 @@ import { View, Text, Image, TouchableOpacity, SafeAreaView, TextInput, FlatList,
 import style from '../styles/style';
 import Icon from 'react-native-vector-icons/Feather';
 import Entypo from 'react-native-vector-icons/Entypo';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const { width, height } = Dimensions.get('window');
 
 const Playlist = ({navigation}) => {
   const [search, setSearch] = useState("");
   const [isSearchVisible, setIsSearchVisible] = useState(false);
+
 
 
   const a = () => {
@@ -24,15 +26,16 @@ const Playlist = ({navigation}) => {
 
 const [laylist,setlaylist]=useState({})
 
-var requestOptions = { 
-  method: 'GET',
-  redirect: 'follow'
-};
 
-fetch("https://pkdservers.com/Sharing/Uploads/hamza.json", requestOptions)
+fetch("https://pkdservers.com/Sharing/Uploads/hamza.json")
   .then(response => response.json())
   .then(result =>{ setlaylist(result)} )
   .catch(error => console.log('error', error));
+
+const setAsync= async ()=>{
+    await AsyncStorage.setItem('Follower',laylist.followers)
+    await AsyncStorage.setItem('Following',laylist.following)
+    }
 
   return (
     <SafeAreaView style={style.container_main}>
@@ -89,7 +92,10 @@ fetch("https://pkdservers.com/Sharing/Uploads/hamza.json", requestOptions)
               return (
                 <View style={{ margin: height*0.02 }}>
                   
-                  <TouchableOpacity onPress={()=>{navigation.navigate('Openplaylist', { playlist: laylist.playlists, index: index})}} style={{
+                  <TouchableOpacity onPress={()=>{
+                    navigation.navigate('Openplaylist', { playlist: laylist.playlists, index: index}) 
+                    setAsync();
+                  }} style={{
                     flexDirection: 'column',
                   }}>
 

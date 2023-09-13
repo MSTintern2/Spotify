@@ -32,11 +32,23 @@ const Profile =() => {
     //-----------------fetching data from the asynchorous storage---------------------//
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    
+    const [data, setData] = useState({
+       follower:'',
+       following:''
+    })
   
     useEffect(() => {
       const fetchUserData = async () => {
         const storedName = await AsyncStorage.getItem('name');
         const storedEmail = await AsyncStorage.getItem('email');
+        const storedfolower = await AsyncStorage.getItem('Follower');
+        const storedfolowing = await AsyncStorage.getItem('Following');
+
+        setData(prevData => ({...prevData,
+            follower: storedfolower,
+            following: storedfolowing
+          }));
         setName(storedName);
         setEmail(storedEmail);
       };
@@ -68,11 +80,11 @@ const Profile =() => {
 
                     <View style={{ flexDirection: "column", alignItems: 'center' }}>
                         <Text style={{ fontSize: 12, fontWeight: 400, color: "white", }}>Followers</Text>
-                        <Text style={{ fontSize: 20, fontWeight: 600, color: "white", }}>129</Text>
+                        <Text style={{ fontSize: 20, fontWeight: 600, color: "white", }}>{data.follower}</Text>
                     </View>
                     <View style={{ flexDirection: "column", alignItems: 'center' }}>
                         <Text style={{ fontSize: 12, fontWeight: 400, color: "white", }}>Following</Text>
-                        <Text style={{ fontSize: 20, fontWeight: 600, color: "white", }}>370</Text>
+                        <Text style={{ fontSize: 20, fontWeight: 600, color: "white", }}>{data.following}</Text>
                     </View>
 
                 </View>
@@ -81,11 +93,11 @@ const Profile =() => {
 
             <View style={{ flex: 0.13, flexDirection: "row", gap:width*0.3, alignItems: 'center', justifyContent: 'center' }}>
                 <View style={{ flexDirection: "column", alignItems: 'center' }}>
-                    <Econ name='adduser' color={'white'} size={35} />
+                    <Econ name='adduser' color={'white'} size={width*0.08} />
                     <Text style={{ fontSize: 16, fontWeight: 600, color: "white", marginTop: 7 }}>Add Friends</Text>
                 </View>
                 <View style={{ flexDirection: "column", alignItems: 'center' }}>
-                    <Mcon name='share-outline' color={'white'} size={35} />
+                    <Mcon name='share-outline' color={'white'} size={width*0.08} />
                     <Text style={{ fontSize: 16, fontWeight: 600, color: "white", marginTop: 7 }}>Share</Text>
                 </View>
 

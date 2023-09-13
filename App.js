@@ -49,24 +49,24 @@ const Tabnav = () => {
       headerShown: false,
       tabBarActiveTintColor: '#42C83C',
       tabBarInactiveTintColor: 'white',
-      tabBarStyle: { backgroundColor: '#333333', height: height * 0.07 }
-
+      tabBarStyle: { backgroundColor: '#333333', height: height * 0.07,borderTopWidth: 0 },
+      
     }}>
 
       <Tab.Screen options={{
         tabBarLabel:'Home',
         tabBarLabelStyle:{fontSize:width * 0.03},
         tabBarIcon: ({ focused }) => (
-          <MaterialCommunityIcons name="home-account" color={focused ? "#42C83C" : "white"} size={width * 0.07} />
+          <MaterialCommunityIcons name="home-account" color={focused ? "#42C83C" : "white"} size={width * 0.08} />
         ),
       }}
-        name="Home1" component={Home} />
+        name="Home1" component={Home}   />
 
       <Tab.Screen name="Playlist" component={Playlist} options={{
         tabBarLabel:'Playlist',
         tabBarLabelStyle:{fontSize:width * 0.03},
         tabBarIcon: ({ focused }) => (
-          <MaterialCommunityIcons name="playlist-music-outline" color={focused ? "#42C83C" : "white"} size={width * 0.07} />
+          <MaterialCommunityIcons name="playlist-music-outline" color={focused ? "#42C83C" : "white"} size={width * 0.08} />
         ),
       }} />
 
@@ -74,7 +74,7 @@ const Tabnav = () => {
          tabBarLabel:'History',
          tabBarLabelStyle:{fontSize:width * 0.03},
         tabBarIcon: ({ focused }) => (
-          <MaterialCommunityIcons name="history" color={focused ? "#42C83C" : "white"} size={width * 0.07} />
+          <MaterialCommunityIcons name="history" color={focused ? "#42C83C" : "white"} size={width * 0.08} />
         ),
 
       }} />
@@ -83,7 +83,7 @@ const Tabnav = () => {
          tabBarLabel:'Profile',
          tabBarLabelStyle:{fontSize:width * 0.03},
         tabBarIcon: ({ focused }) => (
-          <Acon name="user" color={focused ? "#42C83C" : "white"} size={width * 0.07} />
+          <Acon name="user" color={focused ? "#42C83C" : "white"} size={width * 0.08} />
         ),
       }}
       />

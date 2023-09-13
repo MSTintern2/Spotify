@@ -6,8 +6,5 @@ module.exports= async function () {
     TrackPlayer.play())
     TrackPlayer.addEventListener('remote-pause',()=>
     TrackPlayer.pause())
-    TrackPlayer.addEventListener('remote-skipToNext',()=>
-    TrackPlayer.skipToNext())
-    TrackPlayer.addEventListener('remote-skipToPrevious',()=>
-    TrackPlayer.skipToPrevious())
+
 }

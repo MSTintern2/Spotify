@@ -48,7 +48,7 @@ const NowPlaying = ({ route, navigation }) => {
 
 
                 // Capabilities that will show up when the notification is in the compact form on Android
-                compactCapabilities: [Capability.Play, Capability.Pause, Capability.SkipToNext, Capability.SkipToPrevious,],
+                compactCapabilities: [Capability.Play, Capability.Pause,],
             });
             await TrackPlayer.add(Local);
         } catch (e) {

@@ -20,15 +20,18 @@ const Login = (props) => {
     if (Isinternet === true || IsMobile === true) {
       fetch('https://dummyjson.com/users/6/')
         .then(res => res.json())
-        .then(result => { 
+        .then(result => {
           if (email == result.firstName && password == result.height) {
             props.navigation.navigate('Home')
+            setEmail('');
+            setpassword('');
           }
           else {
             setModalVisible(true)
             setMassage('Username or Password not matched.')
+            
           }
-        })      
+        })
     } else {
       setModalVisible(true)
       setMassage('Check the internet connection and then try again.')
@@ -59,7 +62,7 @@ const Login = (props) => {
   return (
 
     <SafeAreaView style={style.container_main}>
-      <ScrollView  showsVerticalScrollIndicator={false}>
+      <ScrollView showsVerticalScrollIndicator={false}>
 
         <View style={{ justifyContent: 'center', flexDirection: "row", flex: 0.1, height: height * 0.2 }} >
           <TouchableOpacity
@@ -73,7 +76,6 @@ const Login = (props) => {
           <Text style={{ color: "white", fontSize: 26, fontWeight: 600, textAlign: 'center', marginBottom: 10 }}>Log In</Text>
           <Text style={{ color: "white", fontSize: 14, fontWeight: 400, textAlign: 'center', }}>If You Need Any Support<TouchableOpacity><Text style={{ color: "#1ED760", fontSize: 14, fontWeight: 400, textAlign: 'center', top: 5 }} > Click Here</Text></TouchableOpacity> </Text>
         </View>
-
 
         <View style={{ flex: 0.47, textAlign: "left" }}>
           <View style={{ alignItems: 'center', textAlign: "left" }}>
@@ -165,7 +167,10 @@ const Login = (props) => {
 
       </ScrollView>
     </SafeAreaView>
+
+
   )
+
 }
 const styles = StyleSheet.create({
   emailInput: {
