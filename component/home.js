@@ -91,9 +91,9 @@ const Home = () => {
               }}>
 
                 <TouchableOpacity disabled={true} style={style.homef} />
-                <View style={{ flexDirection: "column" }}>
-                  <Text style={{ fontSize: height * 0.023, color: "white", paddingBottom: 5, marginLeft: width * 0.03 }}>{item.first_name}</Text>
-                  <Text style={{ fontSize: height * 0.033, fontWeight: 600, color: "white", marginLeft: width * 0.03 }}>{item.Title}</Text>
+                <View style={{ flexDirection: "column" , marginRight: width * 0.06 }}>
+                  <Text style={{ fontSize: height * 0.023, color: "white", paddingBottom: 5,  }}>{item.first_name}</Text>
+                  <Text style={{ fontSize: height * 0.033, fontWeight: 600, color: "white",}}>{item.Title}</Text>
                 </View>
                 <Image source={require('../assests/slider.png')} style={{ width: width * 0.3, height: height * 0.2, bottom: 7.7 }} />
               </View>)

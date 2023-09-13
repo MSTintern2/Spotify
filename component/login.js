@@ -29,7 +29,6 @@ const Login = (props) => {
           else {
             setModalVisible(true)
             setMassage('Username or Password not matched.')
-            
           }
         })
     } else {
@@ -152,15 +151,17 @@ const Login = (props) => {
                 <Text style={{ color: 'black', fontSize: 20, fontWeight: 600 }}>Alert</Text>
               </View>
 
-              <View style={{ alignItems: 'center', justifyContent: 'center', height: '50%' }}>
-                <Text style={{ fontSize: 16, fontWeight: 400, color: 'black' }}>{message}</Text>
+              <View style={{ alignSelf:'center', justifyContent: 'center', height: '50%',width:'80%' }}>
+                <Text style={{ fontSize: 16, fontWeight: 400, color: 'black' ,textAlign:'center'}}>{message}</Text>
               </View>
+
+              <View style={{ backgroundColor: '#42C83C', height: '20%', borderRadius: 10, alignItems: 'center', borderTopEndRadius: 0, borderTopStartRadius: 0, justifyContent: 'center' }} >
               <Pressable
-                onPress={() => setModalVisible(!modalVisible)}>
-                <View style={{ backgroundColor: '#42C83C', height: '45%', borderRadius: 10, alignItems: 'center', borderTopEndRadius: 0, borderTopStartRadius: 0, justifyContent: 'center' }} >
+                onPress={() => setModalVisible(!modalVisible)} >
                   <Text style={styles.textStyle}>Ok</Text>
-                </View>
               </Pressable>
+              </View>
+
             </View>
           </View>
         </Modal>
