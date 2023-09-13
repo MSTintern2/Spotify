@@ -3,7 +3,7 @@ import SplashScreen from 'react-native-splash-screen';
 import { StatusBar, Dimensions } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator, useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import GetStarted from './component/GetStarted';
 import Continue from './component/Continue';
 import Signup from './component/signup';
