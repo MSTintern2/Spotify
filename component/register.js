@@ -88,7 +88,7 @@ await AsyncStorage.setItem('email',data.email)
           <Text style={{ color: "white", fontSize: 14, fontWeight: 400, textAlign: 'center', }}>If You Need Any Support<TouchableOpacity><Text style={{ color: "#1ED760", fontSize: 14, fontWeight: 400, textAlign: 'center', top: 5 }} > Click Here</Text></TouchableOpacity> </Text>
         </View>
 
-        <View style={{ alignSelf: "center", flex: 0.6, height: height * 0.55,width:width*0.76 }}>
+        <View style={{ alignSelf: "center", flex: 0.6, height: height * 0.55,width:width*0.78 }}>
 
           <TextInput
             onChangeText={(text) => handleOnchange(text, 'name')}
@@ -135,7 +135,7 @@ await AsyncStorage.setItem('email',data.email)
 
           <TouchableHighlight onPress={handleSubmit} style={styles.button}>
             
-            <Text style={{ color: "black", fontSize: 18, fontWeight: 600, width: 270, textAlign: 'center', }}>Register</Text>
+            <Text style={{ color: "black", fontSize: 18, fontWeight: 600, width: width*0.78, textAlign: 'center', }}>Register</Text>
             
           </TouchableHighlight>
 

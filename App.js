@@ -39,8 +39,6 @@ const App = () => {
 
   )
 }
-
-
 const Tabnav = () => {
   return (
 
@@ -95,7 +93,6 @@ const Tabnav = () => {
   )
 }
 
-
 const StackNav = () => {
   return (
 
@@ -119,7 +116,5 @@ const StackNav = () => {
     </Stack.Navigator>
   )
 }
-
-
 
 export default App;

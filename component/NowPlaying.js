@@ -1,5 +1,5 @@
-import { View, Text, SafeAreaView, Dimensions, Image, TouchableOpacity, StatusBar, ProgressBarAndroidBase, } from 'react-native';
-import React, { useState, useEffect } from 'react';
+import { View, Text, SafeAreaView, Dimensions, Image, TouchableOpacity, StatusBar,  } from 'react-native';
+import React, { useEffect } from 'react';
 import Econ from 'react-native-vector-icons/AntDesign';
 import Fcon from 'react-native-vector-icons/Feather';
 import Acon from 'react-native-vector-icons/FontAwesome';
@@ -157,15 +157,16 @@ const NowPlaying = ({ route, navigation }) => {
                     }} >
                         <Fcon name={'skip-back'} color={'white'} size={26} />
                     </TouchableOpacity>
+
                     <TouchableOpacity style={{ alignItems: 'center', justifyContent: 'center', marginHorizontal: width * 0.07 }} onPress={async () => {
                         await TrackPlayer.play();
                         togglePlayback(playbackState);
                     }}>
                         <View style={{ width: width * 0.20, height: width * 0.20, backgroundColor: '#1ED760', borderRadius: width * height / 2, alignItems: 'center', justifyContent: 'center', position: 'absolute' }}>
-                            <Acon name={playbackState == State.Paused || playbackState == State.Ready || playbackState == State.Buffering || playbackState == State.Connecting || playbackState == State.Stopped || playbackState == State.None ? 'play' : 'pause'} color={'white'} size={width * 0.1} />
+                            <Acon name={playbackState == State.Paused || playbackState == State.Ready || playbackState == State.Buffering || playbackState == State.Connecting || playbackState == State.Stopped || playbackState == State.None ? 'play' : 'pause'} color={'white'} size={width * 0.09} />
                         </View>
-
                     </TouchableOpacity>
+
                     <TouchableOpacity onPress={async () => {
                         await TrackPlayer.seekTo(progress.position + 30);
 

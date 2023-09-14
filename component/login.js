@@ -112,9 +112,9 @@ const Login = (props) => {
           </View>
 
           <View style={{ display: 'flex', flexDirection: 'row', marginTop: 20, justifyContent: 'center', alignItems: 'center' }}>
-            <View style={{ borderBottomColor: 'grey', borderBottomWidth: 1, width: 140, marginRight: 6 }} />
+            <View style={{ borderBottomColor: 'grey', borderBottomWidth: 1, width:width*0.34, marginRight: 6 }} />
             <Text style={{ color: "white", marginRight: 6 }}>Or</Text>
-            <View style={{ borderBottomColor: 'grey', borderBottomWidth: 1, width: 140 }} />
+            <View style={{ borderBottomColor: 'grey', borderBottomWidth: 1, width:width*0.35 }} />
           </View>
 
 
@@ -169,7 +169,7 @@ const Login = (props) => {
 }
 const styles = StyleSheet.create({
   emailInput: {
-    width: 300,
+    width: width*0.78,
     height: 50,
     borderWidth: 1,
     borderRadius: 15,
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   name: {
-    width: 300,
+    width: width*0.78,
     height: 50,
     borderWidth: 1,
     borderRadius: 15,
@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     marginTop: 25,
     padding: 15,
-    width: width * 0.78
+    width:width*0.78
   },
   centeredView: {
     flex: 1,
