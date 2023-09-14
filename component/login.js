@@ -1,4 +1,4 @@
-import { View, Text, TextInput, Image, TouchableOpacity, SafeAreaView, StyleSheet, TouchableHighlight, Dimensions, ScrollView, Modal, Pressable } from 'react-native';
+import { View, Text, TextInput, Image, TouchableOpacity, SafeAreaView, StyleSheet, TouchableHighlight, Dimensions, ScrollView, Modal, } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import style from '../styles/style';
 import Icon from 'react-native-vector-icons/Feather';
@@ -9,28 +9,43 @@ const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
   const [show, onChangeShow] = useState(true);
-
   const [modalVisible, setModalVisible] = useState(false)
   const [message, setMassage] = useState('');
   const [Isinternet, setinternet] = useState(false)
   const [IsMobile, setMobile] = useState(false)
 
   //------------------------------- Fetching API -----------------------
+
   const handleSubmit = () => {
-    if (Isinternet === true || IsMobile === true) {
-      fetch('https://dummyjson.com/users/6/')
+
+    if (!email || !password) {
+      setModalVisible(true)
+      setMassage('All fields are required')
+    } 
+   else if (Isinternet === true || IsMobile === true) {
+      fetch('https://dummyjson.com/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: email,
+          password: password,
+          // username: 'kminchelle',
+          // password: '0lelplR',
+        })
+      })
         .then(res => res.json())
         .then(result => {
-          if (email == result.firstName && password == result.height) {
-            props.navigation.navigate('Home')
-            setEmail('');
-            setpassword('');
+          if (result.id){
+           props.navigation.navigate('Home')
+            setEmail('')
+            setpassword('')
           }
           else {
             setModalVisible(true)
-            setMassage('Username or Password not matched.')
+            setMassage(result.message)
           }
         })
+
     } else {
       setModalVisible(true)
       setMassage('Check the internet connection and then try again.')
@@ -112,12 +127,10 @@ const Login = (props) => {
           </View>
 
           <View style={{ display: 'flex', flexDirection: 'row', marginTop: 20, justifyContent: 'center', alignItems: 'center' }}>
-            <View style={{ borderBottomColor: 'grey', borderBottomWidth: 1, width:width*0.34, marginRight: 6 }} />
+            <View style={{ borderBottomColor: 'grey', borderBottomWidth: 1, width: width * 0.34, marginRight: 6 }} />
             <Text style={{ color: "white", marginRight: 6 }}>Or</Text>
-            <View style={{ borderBottomColor: 'grey', borderBottomWidth: 1, width:width*0.35 }} />
+            <View style={{ borderBottomColor: 'grey', borderBottomWidth: 1, width: width * 0.35 }} />
           </View>
-
-
         </View>
 
         <View style={{ alignSelf: "center", flex: 0.15, flexDirection: "row", justifyContent: "space-between", gap: width * 0.04, height: height * 0.12, marginTop: 40 }}>
@@ -151,25 +164,25 @@ const Login = (props) => {
                 <Text style={{ color: 'black', fontSize: 20, fontWeight: 600 }}>Alert</Text>
               </View>
 
-              <View style={{ alignSelf:'center', justifyContent: 'center', height: '50%',width:'80%' }}>
-                <Text style={{ fontSize: 16, fontWeight: 400, color: 'black' ,textAlign:'center'}}>{message}</Text>
+              <View style={{ alignSelf: 'center', justifyContent: 'center', height: '50%', width: '80%' }}>
+                <Text style={{ fontSize: 16, fontWeight: 400, color: 'black', textAlign: 'center' }}>{message}</Text>
               </View>
 
-              <TouchableOpacity style={{ backgroundColor: '#42C83C', height: '20%', borderRadius: 10, alignItems: 'center', borderTopEndRadius: 0, borderTopStartRadius: 0, justifyContent: 'center' }}  onPress={() => setModalVisible(!modalVisible)} >
-                  <Text style={styles.textStyle}>Ok</Text>
+              <TouchableOpacity style={{ backgroundColor: '#42C83C', height: '20%', borderRadius: 10, alignItems: 'center', borderTopEndRadius: 0, borderTopStartRadius: 0, justifyContent: 'center' }} onPress={() => setModalVisible(!modalVisible)} >
+                <Text style={styles.textStyle}>Ok</Text>
               </TouchableOpacity>
 
             </View>
           </View>
         </Modal>
-
+        
       </ScrollView>
     </SafeAreaView>
   )
 }
 const styles = StyleSheet.create({
   emailInput: {
-    width: width*0.78,
+    width: width * 0.78,
     height: 50,
     borderWidth: 1,
     borderRadius: 15,
@@ -178,7 +191,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   name: {
-    width: width*0.78,
+    width: width * 0.78,
     height: 50,
     borderWidth: 1,
     borderRadius: 15,
@@ -192,19 +205,18 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     marginTop: 25,
     padding: 15,
-    width:width*0.78
+    width: width * 0.78
   },
   centeredView: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
     backgroundColor: 'rgba(0,0,0,0.5)'
   },
   modalView: {
     backgroundColor: '#ffff',
     borderRadius: 20,
-    width: '80%',
+    width: '75%',
     height: '25%',
     shadowColor: '#000',
     shadowOffset: {

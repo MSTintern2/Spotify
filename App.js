@@ -104,6 +104,7 @@ const StackNav = () => {
       headerTintColor: 'white',
     }} >
 
+      
       <Stack.Screen name="GetStarted" component={GetStarted} />
       <Stack.Screen name="Continue" component={Continue} />
       <Stack.Screen name="Signup" component={Signup} />
