@@ -24,7 +24,7 @@ const Home = () => {
   return (
     <SafeAreaView style={style.container_main}>
 
-      <View style={{ alignItems: 'center', flex: 0.1 }}>
+      <View style={{ alignItems: 'center', flex: 0.1 ,justifyContent:'center'}}>
 
         {isSearchVisible ? (
           <Modal >
@@ -58,7 +58,7 @@ const Home = () => {
             </View>
           </Modal>
         ) : (
-          <View style={{ flexDirection: "row", alignItems: "center", gap: 65 }}>
+          <View style={{ flexDirection: "row", alignItems: "center", gap: 65, }}>
             <TouchableOpacity onPress={a}>
               <Icon name={"search"} color={"white"} size={24} />
             </TouchableOpacity>

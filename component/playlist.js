@@ -39,7 +39,7 @@ const setAsync= async ()=>{
   return (
     <SafeAreaView style={style.container_main}>
 
-      <View style={{ alignItems: 'center', flex: 0.1 }}>
+      <View style={{ alignItems: 'center', flex: 0.1 ,justifyContent:'center'}}>
 
         {isSearchVisible ? (
           <Modal >

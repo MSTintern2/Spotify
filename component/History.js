@@ -14,7 +14,7 @@ const History = () => {
     return (
         <SafeAreaView style={style.container_main}>
 
-            <View style={{ justifyContent: 'center', flexDirection: "row", flex: 0.1 }} >
+            <View style={{ justifyContent: 'center', flexDirection: "row", flex: 0.1 ,alignItems:'center'}} >
 
                 <Text style={{ color: 'white', fontSize: 26, fontWeight: 700, position: 'absolute' }} >History</Text>
                 <View style={{ left: width * 0.42, marginTop: 6 }}>

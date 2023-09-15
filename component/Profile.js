@@ -59,7 +59,7 @@ const Profile =() => {
     return (
         <SafeAreaView style={style.container_main}>
 
-            <View style={{ justifyContent: 'center', flexDirection: "row", flex: 0.1, backgroundColor: '#333333' }} >
+            <View style={{ justifyContent: 'center', flexDirection: "row", flex: 0.1, backgroundColor: '#333333' ,alignItems:'center'}} >
 
                 <Text style={{ color: 'white', fontSize: 26, fontWeight: 700, position: 'absolute' }} >Profile</Text>
                 <View style={{ left: width * 0.42, marginTop: 6 }}>

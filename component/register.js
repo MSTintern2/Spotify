@@ -88,7 +88,7 @@ await AsyncStorage.setItem('email',data.email)
           <Text style={{ color: "white", fontSize: 14, fontWeight: 400, textAlign: 'center', }}>If You Need Any Support<TouchableOpacity><Text style={{ color: "#1ED760", fontSize: 14, fontWeight: 400, textAlign: 'center', top: 5 }} > Click Here</Text></TouchableOpacity> </Text>
         </View>
 
-        <View style={{ alignSelf: "center", flex: 0.6, height: height * 0.55,width:width*0.78 }}>
+        <View style={{ alignSelf: "center", flex: 0.6, height: height * 0.46,width:width*0.78 ,}}>
 
           <TextInput
             onChangeText={(text) => handleOnchange(text, 'name')}
@@ -147,7 +147,7 @@ await AsyncStorage.setItem('email',data.email)
 
         </View>
 
-        <View style={{ alignSelf: "center", flex: 0.1, flexDirection: "row", justifyContent: "space-between", gap: width * 0.04, height: height * 0.12, }}>
+        <View style={{ alignSelf: "center", flex: 0.1, flexDirection: "row", justifyContent: "space-between",height: height * 0.12, gap: width * 0.04,  marginTop: 40 }}>
           <TouchableOpacity
             style={{ borderColor: "grey", width: 90, height: 45, borderRadius: 10, borderWidth: 1, justifyContent: "center", alignItems: "center" }} onPress={b} >
             <Image style={{ width: 24, height: 25 }} source={require('../assests/Facebook.png')} />
@@ -161,8 +161,9 @@ await AsyncStorage.setItem('email',data.email)
             <Image style={{ width: 21.12, height: 26.01 }} source={require('../assests/apple.png')} />
           </TouchableOpacity>
         </View>
-        <View style={{ alignItems: 'center', flex: 0.1, alignSelf: "center", marginBottom: 30, }} >
-          <Text style={{ color: "white", fontSize: 14, fontWeight: 400, textAlign: 'center', }}> Have An Account?
+
+        <View style={{ alignItems: 'center', alignSelf: "center", flex: 0.1, marginBottom: 30 }} >
+          <Text style={{ color: "white", fontSize: 14, fontWeight: 400, textAlign: 'center', }}>Have an account?
             <TouchableOpacity onPress={a}><Text style={{ color: "#D7BD1E", fontSize: 14, fontWeight: 400, textAlign: 'center', top: 5 }} > Login </Text></TouchableOpacity> </Text>
         </View>
 
