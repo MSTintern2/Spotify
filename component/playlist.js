@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, Image, TouchableOpacity, SafeAreaView, TextInput, FlatList, Dimensions ,Modal} from 'react-native';
+import React, { useState,useEffect } from 'react';
+import { View, Text, Image, TouchableOpacity, SafeAreaView, TextInput, FlatList, Dimensions ,Modal,} from 'react-native';
 import style from '../styles/style';
 import Icon from 'react-native-vector-icons/Feather';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -11,8 +11,6 @@ const Playlist = ({navigation}) => {
   const [search, setSearch] = useState("");
   const [isSearchVisible, setIsSearchVisible] = useState(false);
 
-
-
   const a = () => {
     setSearch("")
     setIsSearchVisible(true);
@@ -20,17 +18,18 @@ const Playlist = ({navigation}) => {
   const c = () => {
     setIsSearchVisible(false);
   }
-
-
+  
 // Fetching API data:
-
 const [laylist,setlaylist]=useState({})
 
-
-fetch("https://pkdservers.com/Sharing/Uploads/hamza.json")
-  .then(response => response.json())
-  .then(result =>{ setlaylist(result)} )
-  .catch(error => console.log('error', error));
+useEffect(() => {
+  fetch("https://pkdservers.com/Sharing/Uploads/hamza.json")
+    .then(response => response.json())
+    .then(result => {
+      setlaylist(result);
+    })
+    .catch(error => console.log('error', error));
+}, []);
 
 const setAsync= async ()=>{
     await AsyncStorage.setItem('Follower',laylist.followers)

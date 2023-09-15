@@ -189,6 +189,7 @@ const styles = StyleSheet.create({
     borderColor: '#888',
     color: "white",
     padding: 10,
+    fontSize:16
   },
   name: {
     width: width * 0.78,
@@ -199,6 +200,7 @@ const styles = StyleSheet.create({
     borderColor: '#888',
     marginTop: 15,
     padding: 10,
+    fontSize:16
   },
   button: {
     backgroundColor: '#42C83C',

@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import Econ from 'react-native-vector-icons/AntDesign';
 import Fcon from 'react-native-vector-icons/Feather';
 import Acon from 'react-native-vector-icons/FontAwesome';
-import TrackPlayer, { Capability, usePlaybackState, useProgress, State, AppKilledPlaybackBehavior, } from 'react-native-track-player'
+import TrackPlayer, { Capability, usePlaybackState, useProgress, State, AppKilledPlaybackBehavior, useTrackPlayerEvents,Event } from 'react-native-track-player'
 import { useIsFocused } from '@react-navigation/native';
 import Slider from '@react-native-community/slider';
 import './global';
@@ -44,9 +44,8 @@ const NowPlaying = ({ route, navigation }) => {
                     Capability.SkipToNext,
                     Capability.SkipToPrevious,
                     Capability.Stop,
+                    
                 ],
-
-
                 // Capabilities that will show up when the notification is in the compact form on Android
                 compactCapabilities: [Capability.Play, Capability.Pause,],
             });
@@ -58,11 +57,13 @@ const NowPlaying = ({ route, navigation }) => {
     const togglePlayback = async playbackState => {
         if (playbackState == State.Paused || playbackState == State.Ready || playbackState == State.Buffering || playbackState == State.Connecting || playbackState == State.Stopped || playbackState == State.None) {
             await TrackPlayer.play()
-        } else {
+        } 
+        else  {
             await TrackPlayer.pause()
-
         }
     }
+
+   
     // Data recevied From openplaylist screen..
     const { sindex, song } = route.params;
     const b = () => {
@@ -134,6 +135,7 @@ const NowPlaying = ({ route, navigation }) => {
                     onValueChange={async value => {
                         await TrackPlayer.seekTo(value)
                     }}
+                  
                 />
 
                 <View style={{ flexDirection: 'row', color: 'white', justifyContent: 'space-between', gap: width * 0.6, }}>
@@ -150,8 +152,6 @@ const NowPlaying = ({ route, navigation }) => {
                     ) : (
                         <Acon name="backward" size={22} color="gray" />
                     )}
-
-
                     <TouchableOpacity onPress={async () => {
                         await TrackPlayer.seekTo(progress.position - 30);
                     }} >
@@ -163,7 +163,7 @@ const NowPlaying = ({ route, navigation }) => {
                         togglePlayback(playbackState);
                     }}>
                         <View style={{ width: width * 0.20, height: width * 0.20, backgroundColor: '#1ED760', borderRadius: width * height / 2, alignItems: 'center', justifyContent: 'center', position: 'absolute' }}>
-                            <Acon name={playbackState == State.Paused || playbackState == State.Ready || playbackState == State.Buffering || playbackState == State.Connecting || playbackState == State.Stopped || playbackState == State.None ? 'play' : 'pause'} color={'white'} size={width * 0.09} />
+                            <Acon name={playbackState == State.Paused || playbackState == State.Ready || playbackState == State.Buffering || playbackState == State.Connecting || playbackState == State.Stopped || playbackState == State.None ? 'play' : 'pause'} color={'white'} size={width * 0.09}  />
                         </View>
                     </TouchableOpacity>
 
@@ -182,9 +182,7 @@ const NowPlaying = ({ route, navigation }) => {
                     ) : (
                         <Acon name="forward" size={22} color="gray" />
                     )}
-
                 </View>
-
             </View>
 
         </SafeAreaView>

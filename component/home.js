@@ -69,11 +69,11 @@ const Home = () => {
 
       </View>
 
-      <View style={{ alignItems: 'center', flex: 0.24 }}>
+      <View style={{ flex: 0.24}}>
         <FlatList
-          data={[{ id: 1, first_name: "Popular", Title: "Batman Assault ", image: "../assests/slider.png" },
-          { id: 2, first_name: "Semi-Popular", Title: "Green Waver Pin", image: "assests\slider.png" },
-          { id: 3, first_name: 'Rapster', Title: "Secrets of Tribe", image: "assests\slider.png" }]}
+          data={[{ id: 1, first_name: "Popular", Title: "Sisa Rassan", image: "../assests/slider.png" },
+          { id: 2, first_name: "Semi-Popular", Title: "Green Base", image: "assests\slider.png" },
+          { id: 3, first_name: 'Rapster', Title: "Secrets Tribe", image: "assests\slider.png" }]}
 
           horizontal={true}
           showsHorizontalScrollIndicator={false}
@@ -82,7 +82,7 @@ const Home = () => {
             return (
               <View style={{
                 width: width,
-                height: height / 5,
+                height: height / 4.6,
                 justifyContent: "center",
                 alignItems: "center",
                 display: "flex",
@@ -91,11 +91,14 @@ const Home = () => {
               }}>
 
                 <TouchableOpacity disabled={true} style={style.homef} />
-                <View style={{ flexDirection: "column" , marginRight: width * 0.06 }}>
+                
+                <View style={{ flexDirection: "column" ,width:width*0.8 }}>
                   <Text style={{ fontSize: height * 0.023, color: "white", paddingBottom: 5,  }}>{item.first_name}</Text>
                   <Text style={{ fontSize: height * 0.033, fontWeight: 600, color: "white",}}>{item.Title}</Text>
                 </View>
-                <Image source={require('../assests/slider.png')} style={{ width: width * 0.3, height: height * 0.2, bottom: 7.7 }} />
+              <View style={{bottom: 8,position:'absolute',left:width*0.54}}>
+                <Image source={require('../assests/slider.png')}  style={{borderBottomRightRadius:20 ,height: height * 0.22,}}/>
+                </View>
               </View>)
           }} />
       </View>
@@ -336,7 +339,6 @@ const SettingsTab = () => {
 const styles = {
   container: {
     flex: 1,
-
   },
   tabBar: {
     marginTop: height * 0.01,
@@ -388,5 +390,3 @@ const styles = {
   },
 }
 export default Home;
-
-

@@ -18,7 +18,6 @@ import Openplaylist from './component/Openplaylist';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Acon from 'react-native-vector-icons/FontAwesome';
 
-
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 

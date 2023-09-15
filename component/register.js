@@ -197,7 +197,7 @@ await AsyncStorage.setItem('email',data.email)
 }
 const styles = StyleSheet.create({
   emailInput: {
-
+fontSize:16,
     height: 50,
     borderWidth: 1,
     borderRadius: 15,
@@ -214,6 +214,7 @@ const styles = StyleSheet.create({
     borderColor: '#888',
     marginTop: 15,
     padding: 10,
+    fontSize:16
   },
   button: {
     backgroundColor: '#42C83C',
