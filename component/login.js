@@ -108,7 +108,7 @@ const Login = (props) => {
               placeholder="Password"
               placeholderTextColor="#888"
             />
-            <TouchableOpacity onPress={() => onChangeShow((ab) => !(ab))} style={{ position: 'absolute', right: width * 0.17, top: height * 0.107 }}>
+            <TouchableOpacity onPress={() => onChangeShow((ab) => !(ab))} style={{ position: 'absolute', right: width * 0.17, top: height * 0.104 }}>
               <Icon name={show ? 'eye-off' : 'eye'} size={20} color="#888" />
             </TouchableOpacity>
           </View>
