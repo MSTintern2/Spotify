@@ -5,7 +5,7 @@ import { LinearGradient } from 'react-native-linear-gradient';
 const { width,height } = Dimensions.get('window');
 const Signup = (props) => {
     const b = () => {
-        props.navigation.navigate("Continue")
+        props.navigation.navigate("GetStarted")
     }
     const a = () => {
         props.navigation.navigate("Login")

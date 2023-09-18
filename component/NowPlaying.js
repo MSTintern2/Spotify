@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import Econ from 'react-native-vector-icons/AntDesign';
 import Fcon from 'react-native-vector-icons/Feather';
 import Acon from 'react-native-vector-icons/FontAwesome';
-import TrackPlayer, { Capability, usePlaybackState, useProgress, State, AppKilledPlaybackBehavior, useTrackPlayerEvents,Event } from 'react-native-track-player'
+import TrackPlayer, { Capability, usePlaybackState, useProgress, State, AppKilledPlaybackBehavior,  } from 'react-native-track-player'
 import { useIsFocused } from '@react-navigation/native';
 import Slider from '@react-native-community/slider';
 import './global';

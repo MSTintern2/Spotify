@@ -5,7 +5,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import GetStarted from './component/GetStarted';
-import Continue from './component/Continue';
 import Signup from './component/signup';
 import Login from './component/login';
 import Register from './component/register';
@@ -105,7 +104,6 @@ const StackNav = () => {
 
       
       <Stack.Screen name="GetStarted" component={GetStarted} />
-      <Stack.Screen name="Continue" component={Continue} />
       <Stack.Screen name="Signup" component={Signup} />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Register" component={Register} />
