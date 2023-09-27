@@ -2,14 +2,15 @@ import { View, Text, Image, FlatList, ScrollView, SafeAreaView, TouchableOpacity
 import Acon from 'react-native-vector-icons/FontAwesome';
 import Icon from 'react-native-vector-icons/Feather';
 import Entypo from 'react-native-vector-icons/Entypo';
+
 import React, { useState } from 'react'
 import style from '../styles/style';
 const { width, height } = Dimensions.get('window');
 
 
 const Openplaylist = ({ route, navigation }) => {
-  //--------------Getting Data from Playlist screen----------------
-  const { playlist, index } = route.params;
+  // //--------------Getting Data from Playlist screen----------------
+const { playlist, index } = route.params;
 
   //--------------Save in variable for passing to new screen---------
   const Newsong_Array = playlist[index].songs;
@@ -31,37 +32,65 @@ const Openplaylist = ({ route, navigation }) => {
     <SafeAreaView style={style.container_main}>
       <ScrollView showsVerticalScrollIndicator={false} >
 
-        <View style={{ alignItems: 'center', flex: 0.1, height:height*0.07,justifyContent:'center' }}>
+        <View style={{ alignItems: 'center', flex: 0.1, height: height * 0.07, justifyContent: 'center' }}>
 
           {isSearchVisible ? (
             <Modal >
               <View style={{ flex: 1, backgroundColor: 'black' }}>
-                <View style={style.container1}>
-                  <View style={style.searchBar__unclicked}>
-                    {/* search Icon */}
-                    <Icon
-                      name="search"
-                      size={22}
-                      color="white"
-                      style={{ marginLeft: 1 }}
+
+                <View style={style.searchBar__unclicked}>
+                  {/* search Icon */}
+                  <Icon
+                    name="search"
+                    size={22}
+                    color="white"
+                    style={{ marginLeft: 1 }}
+                  />
+                  {/* Input field */}
+                  <TextInput
+                    style={style.input}
+                    placeholder="Search"
+                    placeholderTextColor={"white"}
+                    value={search}
+                    onChangeText={(text) => { setSearch(text) }}
+                  />
+                  <TouchableOpacity onPress={c}>
+                    <Entypo
+                      name="cross"
+                      size={30}
+                      color='white'
                     />
-                    {/* Input field */}
-                    <TextInput
-                      style={style.input}
-                      placeholder="Search"
-                      placeholderTextColor={"white"}
-                      value={search}
-                      onChangeText={(text) => { setSearch(text) }}
-                    />
-                    <TouchableOpacity onPress={c}>
-                      <Entypo
-                        name="cross"
-                        size={30}
-                        color='white'
-                      />
-                    </TouchableOpacity>
-                  </View>
+                  </TouchableOpacity>
                 </View>
+
+                <View style={{ marginLeft: 10, flex: 0.9 }}>
+                  <FlatList
+                    showsVerticalScrollIndicator={false}
+                    data={playlist[index].songs.filter(item => item.title.toLowerCase().includes(search.toLowerCase()))}
+                    renderItem={({ item, index }) => {
+                      return (
+                        <View>
+                          <TouchableOpacity onPress={() => { navigation.navigate('NowPlaying', { sindex: index, song: Newsong_Array }) }} style={styles.songItem}>
+
+                            <Image style={styles.img} source={{ uri: item.image }} />
+                            <View style={styles.songDetails}>
+                              <Text style={styles.songTitle}>{item.title}</Text>
+                              <Text style={styles.viewCount}>14k views</Text>
+                            </View>
+                            <View style={styles.btn}>
+                              <Acon name="play" size={12} color='white' />
+                            </View>
+                          </TouchableOpacity>
+                          <View style={{
+                            borderBottomColor: '#333333',
+                            borderBottomWidth: 1, marginTop: 10
+                          }} />
+                        </View>
+                      )
+                    }}
+                  />
+                </View>
+
               </View>
             </Modal>
           ) : (
@@ -99,7 +128,7 @@ const Openplaylist = ({ route, navigation }) => {
                       <Text style={styles.viewCount}>14k views</Text>
                     </View>
                     <View style={styles.btn}>
-                      <Acon name="play" size={20} color='white' />
+                      <Acon name="play" size={12} color='white' />
                     </View>
                   </TouchableOpacity>
                   <View style={{

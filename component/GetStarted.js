@@ -24,7 +24,7 @@ const GetStarted = (props) => {
   angle={180}/>
       </View>
 
-      <View style={{ alignItems: 'center', flex: 0.3, width: width*0.9, alignSelf: "center", }} >
+      <View style={{ alignItems: 'center', flex: 0.3, width: width*0.8, alignSelf: "center",}} >
         <Text style={{ color: "#1ED760", fontSize: 25, fontWeight: 700,marginBottom: 15}}>Music for everyone.</Text>
         <Text style={{ color: "white", fontSize: 14, textAlign: "center",fontFamily:'Montserrat-BoldItalic' }}>Nulla Lorem mollit cupidatat irure. Laborum magna nulla duis ullamco cillum dolor. Voluptate exercitation incididunt aliquip deserunt reprehenderit elit laborum. </Text>
         <TouchableOpacity style={{ backgroundColor: "#42C83C", padding: 12, borderRadius: 70, marginTop: height*0.04}} onPress={a}>

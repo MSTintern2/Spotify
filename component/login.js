@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import style from '../styles/style';
 import Icon from 'react-native-vector-icons/Feather';
 import NetInfo from "@react-native-community/netinfo";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const { width, height } = Dimensions.get('window');
 
 const Login = (props) => {
@@ -21,7 +22,7 @@ const Login = (props) => {
     if (!email || !password) {
       setModalVisible(true)
       setMassage('All fields are required')
-    } 
+    }
    else if (Isinternet === true || IsMobile === true) {
       fetch('https://dummyjson.com/auth/login', {
         method: 'POST',
@@ -72,6 +73,8 @@ const Login = (props) => {
   const a = () => {
     props.navigation.navigate("Register")
   }
+
+  //------------------Login Back From where we exit.-------------------
 
   return (
 

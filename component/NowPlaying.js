@@ -1,5 +1,5 @@
 import { View, Text, SafeAreaView, Dimensions, Image, TouchableOpacity, StatusBar,  } from 'react-native';
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import Econ from 'react-native-vector-icons/AntDesign';
 import Fcon from 'react-native-vector-icons/Feather';
 import Acon from 'react-native-vector-icons/FontAwesome';
@@ -20,6 +20,16 @@ function FocusAwareStatusBar(props) {
 
 const NowPlaying = ({ route, navigation }) => {
 
+    const [IsLiked,setIsLiked]=useState(false);
+
+    const handlePress= () => {
+        if(IsLiked === false) {
+            setIsLiked(true)
+        }
+      else {
+        setIsLiked(false)
+      }
+    }
 
     // ----------------Sound ----------------
     const progress = useProgress();
@@ -62,8 +72,7 @@ const NowPlaying = ({ route, navigation }) => {
             await TrackPlayer.pause()
         }
     }
-
-   
+ 
     // Data recevied From openplaylist screen..
     const { sindex, song } = route.params;
     const b = () => {
@@ -88,7 +97,16 @@ const NowPlaying = ({ route, navigation }) => {
             navigation.navigate('Playlist');
         }
     }
+// --------------------Mili to Minutes-----------------
 
+function millisToMinutesAndSeconds(millis) {
+    const minutes = Math.floor(millis / 60000);
+    const seconds = ((millis % 60000) / 1000).toFixed(0)
+   
+    return `${minutes < 10 ? '0' : ''}${minutes}:${
+      seconds < 10 ? '0' : ''
+    }${seconds}`;
+   }
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: "#333333" }}>
             <View style={{ flex: 0.1, justifyContent: 'center', flexDirection: "row" }} >
@@ -103,7 +121,7 @@ const NowPlaying = ({ route, navigation }) => {
 
                 <View style={{
                     elevation: 70, shadowColor: 'black',
-                    shadowOffset: { width: 0, height: 0 },
+                    shadowOffset: { width: 0, height: 20 },
                     shadowOpacity: 1,
                     shadowRadius: 2,
                 }}
@@ -117,9 +135,9 @@ const NowPlaying = ({ route, navigation }) => {
                         <Text style={{ fontSize: 16, color: 'white', fontWeight: '400' }}>Netflix Mahalini</Text>
                     </View>
 
-                    <View style={{ marginTop: 10 }}>
-                        <Econ name={"heart"} color={"#1ED760"} size={30} />
-                    </View>
+                    <TouchableOpacity onPress={handlePress} style={{ marginTop: 10 }}>
+                        <Econ name={IsLiked ? "heart" : "hearto"} color={"#1ED760"} size={30} />
+                    </TouchableOpacity>
                 </View>
             </View>
 
@@ -139,8 +157,8 @@ const NowPlaying = ({ route, navigation }) => {
                 />
 
                 <View style={{ flexDirection: 'row', color: 'white', justifyContent: 'space-between', gap: width * 0.6, }}>
-                    <Text style={{ color: 'white', fontSize: 12 }}>{progress.position}</Text>
-                    <Text style={{ color: 'white', fontSize: 12 }}>{progress.duration}</Text>
+                    <Text style={{ color: 'white', fontSize: 12 }}> {millisToMinutesAndSeconds(progress.position * 1000)}</Text>
+                    <Text style={{ color: 'white', fontSize: 12 }}> {millisToMinutesAndSeconds((progress.duration) * 1000,)}</Text>
                 </View>
 
                 <View style={{ flexDirection: 'row', color: 'white', justifyContent: 'space-between', gap: width * 0.1, marginTop: 30, }}>

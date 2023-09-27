@@ -39,15 +39,16 @@ export default StyleSheet.create({
         alignSelf: "center"
     },
     homef: {
-        width: "90%",
-        height: "90%",
+        width: "93%",
+        height: "85%",
         backgroundColor: "#D7BD1E",
         borderRadius: 20,
         position: "absolute"
     },
     grid: {
-        marginRight: 15,
+        marginRight: 10,
         borderRadius: 10,
+      
     },
     hj: {
         fontSize: 24,
@@ -61,29 +62,23 @@ export default StyleSheet.create({
         borderRadius: 50,
         justifyContent: "center",
         alignItems: "center"
-    },container1: {
-        margin: 15,
-        justifyContent: "flex-start",
-        alignItems: "center",
-        flexDirection: "row",
-        width: "95%",
-        
-      },
+    },
       searchBar__unclicked: {
-        padding: 10,
+        flex:0.1,
         flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
         width: "95%",
         backgroundColor: "#333",
         borderRadius: 15,
-        alignItems: "center",
+        margin:10,
       },
       input: {
-        fontSize: 20,
+        fontSize: 16,
         marginLeft: 10,
-        width: "80%",
+        width: "75%",
         color:'white',
-        
       },
-
+   
 });
 

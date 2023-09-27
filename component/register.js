@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const { width, height } = Dimensions.get('window');
+
 const Register = ({ navigation }) => {
   const b = () => {
     navigation.navigate("Signup")
@@ -13,14 +14,14 @@ const Register = ({ navigation }) => {
     navigation.navigate("Login")
   }
 
-  // States:
+  //--------------------States for saving Register form data:-------------------
   const [data, setdata] = useState({
     name: '',
     email: '',
     password: '',
     Repeatpassword: ''
   });
-//--------------------------------Asynchrounous Storage------------------------------------
+//--------------------------------Asynchrounous Storage(set Item)------------------------------------
 const setAsync= async ()=>{
 await AsyncStorage.setItem('name',data.name)
 await AsyncStorage.setItem('email',data.email)
@@ -38,7 +39,7 @@ await AsyncStorage.setItem('email',data.email)
     setdata(prevstate => ({ ...prevstate, [input]: text }));
   };
  
-//Main OnCall Register
+//----------------------Main OnCall Register---------------------
   const handleSubmit = () => {
    
     if (!data.name || !data.email || !data.password || !data.Repeatpassword) {
@@ -88,7 +89,7 @@ await AsyncStorage.setItem('email',data.email)
           <Text style={{ color: "white", fontSize: 14, fontWeight: 400, textAlign: 'center', }}>If You Need Any Support<TouchableOpacity><Text style={{ color: "#1ED760", fontSize: 14, fontWeight: 400, textAlign: 'center', top: 5 }} > Click Here</Text></TouchableOpacity> </Text>
         </View>
 
-        <View style={{ alignSelf: "center", flex: 0.6, height: height * 0.46,width:width*0.78 ,}}>
+        <View style={{ alignSelf: "center", flex: 0.6, height: height * 0.46,width:width*0.78}}>
 
           <TextInput
             onChangeText={(text) => handleOnchange(text, 'name')}
@@ -139,7 +140,7 @@ await AsyncStorage.setItem('email',data.email)
             
           </TouchableHighlight>
 
-          <View style={{ display: 'flex', flexDirection: 'row', marginTop: 20 }}>
+          <View style={{ flexDirection: 'row', marginTop: 20, }}>
             <View style={{ borderBottomColor: 'grey', borderBottomWidth: 1, width: width*0.34, marginBottom: 8, marginRight: 6 }} />
             <Text style={{ color: "white", marginRight: 6 }}>Or</Text>
             <View style={{ borderBottomColor: 'grey', borderBottomWidth: 1, width: width*0.35, marginBottom: 8 }} />
@@ -147,7 +148,7 @@ await AsyncStorage.setItem('email',data.email)
 
         </View>
 
-        <View style={{ alignSelf: "center", flex: 0.1, flexDirection: "row", justifyContent: "space-between",height: height * 0.12, gap: width * 0.04,  marginTop: 40 }}>
+        <View style={{ alignSelf: "center", flex: 0.1, flexDirection: "row", justifyContent: "space-between",height: height * 0.12, gap: width * 0.04,  marginTop: 70}}>
           <TouchableOpacity
             style={{ borderColor: "grey", width: 90, height: 45, borderRadius: 10, borderWidth: 1, justifyContent: "center", alignItems: "center" }} onPress={b} >
             <Image style={{ width: 24, height: 25 }} source={require('../assests/Facebook.png')} />

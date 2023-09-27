@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { TouchableOpacity,View ,Image} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import { StatusBar, Dimensions } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -38,37 +39,53 @@ const App = () => {
   )
 }
 const Tabnav = () => {
+  const CustomTabButton = (props) => (
+    <TouchableOpacity
+      {...props}
+      style={
+        props.accessibilityState.selected
+          ? [props.style]
+          : props.style
+      }>
+      {props.accessibilityState.selected && <View>
+        <Image style={{height:width*0.012,width:width*0.07}} source={require('./assests/Bottom.png')}/>
+        </View>}
+      {props.children}
+      </TouchableOpacity>
+  );
   return (
-
 
     <Tab.Navigator screenOptions={{
       headerShown: false,
       tabBarActiveTintColor: '#42C83C',
       tabBarInactiveTintColor: 'white',
-      tabBarStyle: { backgroundColor: '#333333', height: height * 0.07,borderTopWidth: 0 },
-      
+      tabBarStyle: { backgroundColor: '#333333', height: height * 0.08, borderTopWidth: 0},
+
     }}>
 
       <Tab.Screen options={{
-        tabBarLabel:'Home',
-        tabBarLabelStyle:{fontSize:width * 0.03},
+        tabBarLabel: 'Home',
+        tabBarLabelStyle: { fontSize: width * 0.03,marginTop:-12},
+        tabBarButton:CustomTabButton,
         tabBarIcon: ({ focused }) => (
           <MaterialCommunityIcons name="home-account" color={focused ? "#42C83C" : "white"} size={width * 0.08} />
         ),
       }}
-        name="Home1" component={Home}   />
+        name="Home1" component={Home} />
 
       <Tab.Screen name="Playlist" component={Playlist} options={{
-        tabBarLabel:'Playlist',
-        tabBarLabelStyle:{fontSize:width * 0.03},
+        tabBarLabel: 'Playlist',
+        tabBarButton:CustomTabButton,
+        tabBarLabelStyle: { fontSize: width * 0.03,marginTop:-12 },
         tabBarIcon: ({ focused }) => (
           <MaterialCommunityIcons name="playlist-music-outline" color={focused ? "#42C83C" : "white"} size={width * 0.08} />
         ),
       }} />
 
       <Tab.Screen name="History" component={History} options={{
-         tabBarLabel:'History',
-         tabBarLabelStyle:{fontSize:width * 0.03},
+        tabBarLabel: 'History',
+        tabBarButton:CustomTabButton,
+        tabBarLabelStyle: { fontSize: width * 0.03,marginTop:-12 },
         tabBarIcon: ({ focused }) => (
           <MaterialCommunityIcons name="history" color={focused ? "#42C83C" : "white"} size={width * 0.08} />
         ),
@@ -76,8 +93,9 @@ const Tabnav = () => {
       }} />
 
       <Tab.Screen name="Profile" component={Profile} options={{
-         tabBarLabel:'Profile',
-         tabBarLabelStyle:{fontSize:width * 0.03},
+        tabBarLabel: 'Profile',
+        tabBarButton:CustomTabButton,
+        tabBarLabelStyle: { fontSize: width * 0.03,marginTop:-12},
         tabBarIcon: ({ focused }) => (
           <Acon name="user" color={focused ? "#42C83C" : "white"} size={width * 0.08} />
         ),
@@ -92,6 +110,7 @@ const Tabnav = () => {
 }
 
 const StackNav = () => {
+
   return (
 
     <Stack.Navigator screenOptions={{
@@ -100,16 +119,36 @@ const StackNav = () => {
         backgroundColor: 'white',
       },
       headerTintColor: 'white',
-    }} >
-
-      
-      <Stack.Screen name="GetStarted" component={GetStarted} />
-      <Stack.Screen name="Signup" component={Signup} />
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="Register" component={Register} />
-      <Stack.Screen name="Home" component={Tabnav} />
-      <Stack.Screen name='Openplaylist' component={Openplaylist} />
-      <Stack.Screen name='NowPlaying' component={NowPlaying} />
+    }} 
+    >
+      <Stack.Screen name="GetStarted" component={GetStarted}  options={{
+animationTypeForReplace:'push',
+animation:'slide_from_right',
+      }} />
+      <Stack.Screen name="Signup" component={Signup} options={{
+animationTypeForReplace:'push',
+animation:'slide_from_right',
+      }}  />
+      <Stack.Screen name="Login" component={Login} options={{
+animationTypeForReplace:'push',
+animation:'slide_from_right',
+      }} />
+      <Stack.Screen name="Register" component={Register} options={{
+animationTypeForReplace:'push',
+animation:'slide_from_right',
+      }} />
+      <Stack.Screen name="Home" component={Tabnav}  options={{
+animationTypeForReplace:'push',
+animation:'slide_from_right',
+      }} />
+      <Stack.Screen name='Openplaylist' component={Openplaylist}  options={{
+animationTypeForReplace:'push',
+animation:'slide_from_right',
+      }} />
+      <Stack.Screen name='NowPlaying' component={NowPlaying}   options={{
+animationTypeForReplace:'push',
+animation:'slide_from_right',
+      }}/>
 
     </Stack.Navigator>
   )

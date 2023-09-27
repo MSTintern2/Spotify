@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { View, Text, Image, TouchableOpacity, SafeAreaView, TextInput, FlatList, Dimensions, ScrollView, Modal } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, Image, TouchableOpacity, SafeAreaView, TextInput, FlatList, Dimensions, ScrollView, Modal, BackHandler, Alert, } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import style from '../styles/style';
 import Icon from 'react-native-vector-icons/Feather';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -11,8 +12,29 @@ const { width, height } = Dimensions.get('window');
 const Home = () => {
   const [search, setSearch] = useState("");
   const [isSearchVisible, setIsSearchVisible] = useState(false);
-  
 
+  //-----------------------------OnPress Exit the app.--------------------
+  // useEffect(()=> {
+  //   const backAction = () =>{
+  //     Alert.alert('Exist App!', "Are you sure you want to go back?",[
+  //       {
+  //         text:'Cancel',
+  //         onPress:()=>null,
+  //         style: 'cancel'
+  //       },
+  //       {text:'Yes', 
+  //       onPress:()=> BackHandler.exitApp()
+  //    }
+  //     ]);
+  //     return true;
+  //   }
+  //   const backHandler= BackHandler.addEventListener(
+  //     "hardwareBackPress",backAction
+  //   )
+  //   return ()=> backHandler.remove();
+  // },[])
+
+  //-----------------------Navigation---------------------------
   const a = () => {
     setSearch("")
     setIsSearchVisible(true);
@@ -24,12 +46,11 @@ const Home = () => {
   return (
     <SafeAreaView style={style.container_main}>
 
-      <View style={{ alignItems: 'center', flex: 0.1 ,justifyContent:'center'}}>
+      <View style={{ alignItems: 'center', flex: 0.1, justifyContent: 'center' }}>
 
         {isSearchVisible ? (
           <Modal >
-            <View style={{flex:1,backgroundColor:'black'}}>
-            <View style={style.container1}>
+            <View style={{ flex: 1, backgroundColor: 'black' }}>
               <View style={style.searchBar__unclicked}>
                 {/* search Icon */}
                 <Icon
@@ -44,17 +65,16 @@ const Home = () => {
                   placeholder="Search"
                   placeholderTextColor={"white"}
                   value={search}
-                  onChangeText={(text) => {setSearch(text) }}
+                  onChangeText={(text) => { setSearch(text) }}
                 />
                 <TouchableOpacity onPress={c}>
-                <Entypo 
-                  name="cross"
-                  size={30}
-                  color='white'
+                  <Entypo
+                    name="cross"
+                    size={30}
+                    color='white'
                   />
-                  </TouchableOpacity>
+                </TouchableOpacity>
               </View>
-            </View>
             </View>
           </Modal>
         ) : (
@@ -69,11 +89,11 @@ const Home = () => {
 
       </View>
 
-      <View style={{ flex: 0.24}}>
+      <View style={{ flex: 0.26 }}>
         <FlatList
-          data={[{ id: 1, first_name: "Popular", Title: "Sisa Rassan", image: "../assests/slider.png" },
-          { id: 2, first_name: "Semi-Popular", Title: "Green Base", image: "assests\slider.png" },
-          { id: 3, first_name: 'Rapster', Title: "Secrets Tribe", image: "assests\slider.png" }]}
+          data={[{ id: 1, first_name: "Popular", Title: "Nisa Rassan", sub: "Mahalini", image: "../assests/slider.png" },
+          { id: 2, first_name: "Semi-Popular", Title: "Green Base", sub: "Mahalini", image: "assests\slider.png" },
+          { id: 3, first_name: 'Rapster', Title: "Secrets Tribe", sub: "Mahalini", image: "assests\slider.png" }]}
 
           horizontal={true}
           showsHorizontalScrollIndicator={false}
@@ -82,48 +102,68 @@ const Home = () => {
             return (
               <View style={{
                 width: width,
-                height: height / 4.6,
+                height: height / 5,
                 justifyContent: "center",
-                alignItems: "center",
+                alignItems: "flex-end",
                 display: "flex",
                 flexDirection: "row",
 
               }}>
 
                 <TouchableOpacity disabled={true} style={style.homef} />
-                
-                <View style={{ flexDirection: "column" ,width:width*0.8 }}>
-                  <Text style={{ fontSize: height * 0.023, color: "white", paddingBottom: 5,  }}>{item.first_name}</Text>
-                  <Text style={{ fontSize: height * 0.033, fontWeight: 600, color: "white",}}>{item.Title}</Text>
+                <View style={{ height: height * 0.1, marginRight: 8 }}>
+                  <Icon name={"chevron-left"} color={"rgba(255, 255, 255, 0.4)"} size={28} />
                 </View>
-              <View style={{bottom: 8,position:'absolute',left:width*0.54}}>
-                <Image source={require('../assests/slider.png')}  style={{borderBottomRightRadius:20 ,height: height * 0.22,}}/>
+                <View style={{ flexDirection: "column", width: width * 0.7, alignItems: 'flex-start', height: height / 6, justifyContent: 'center' }}>
+                  <Text style={{ fontSize: height * 0.02, color: "white", paddingBottom: 5 }}>{item.first_name}</Text>
+                  <Text style={{ fontSize: height * 0.033, fontWeight: 600, color: "white", paddingBottom: 5 }}>{item.Title}</Text>
+                  <Text style={{ fontSize: height * 0.025, color: "white", fontWeight: 500, }}>{item.sub}</Text>
+                </View>
+                <View style={{ position: 'absolute', left: width * 0.52 }}>
+                  <Image source={require('../assests/slider.png')} style={{ width: width * 0.4, height: height * 0.2 }} />
+                </View>
+                <View style={{ height: height * 0.1 }}>
+                  <Icon name={"chevron-right"} color={"rgba(255, 255, 255, 0.4)"} size={28} />
                 </View>
               </View>)
           }} />
       </View>
 
-      <View style={{ flex: 0.3, paddingLeft: 15 }}>
+      <View style={{ flex: 0.31, paddingLeft: 15 }}>
         <Text style={{ fontSize: height * 0.03, fontWeight: 600, color: "white", textAlign: "left", }}>Today's hits</Text>
         <FlatList
-          horizontal={true}
+          horizontal
           showsHorizontalScrollIndicator={false}
           data={[1, 1, 1, 1]}
           renderItem={() => {
             return (
               <View style={{ marginTop: height * 0.01 }} >
-                <View>
-                  <Image style={[style.grid, { width: width * 0.3, height: height * 0.15 }]} source={require("../assests/Tiara.png")} />
-                  <Text style={{ color: "white", fontSize: 14, marginTop: 10 }}>Tiara Adani</Text>
+                <View >
+                  <Image style={[style.grid, { width: width * 0.3, height: height * 0.15, }]} source={require("../assests/Tiara.png")} />
+                  <TouchableOpacity style={{ width: width * 0.05, height: width * 0.05, backgroundColor: '#818181', borderRadius: width * height, position: 'absolute', transform: [{ translateY: height * 0.118 }, { translateX: width * 0.236 }], justifyContent: 'center', alignItems: 'center' }}>
+                    <Image style={{ width: 7.73, height: 8.15 }} source={require("../assests/Vector.png")} />
+                  </TouchableOpacity>
+
+
                 </View>
-                <Text style={{ color: "#888", fontSize: 12, marginTop: 1 }}>Lrti Untuk Yen</Text>
+
+                <View style={{ width: width * 0.27, marginLeft: 5 }}>
+                  <ScrollView horizontal={true}
+                    showsHorizontalScrollIndicator={false}>
+                    <View>
+                      <Text style={{ color: "white", fontSize: 14, marginTop: 5 }}>Black Jeans</Text>
+                      <Text style={{ color: "#888", fontSize: 11, }}>Going Deep in Water in the summer.</Text>
+                    </View>
+                  </ScrollView>
+                </View>
+
               </View>
 
             )
           }} />
       </View>
 
-      <View style={{ flex: 0.36 }}>
+      <View style={{ flex: 0.33 }}>
         <TabNavigator />
       </View>
 
@@ -145,9 +185,10 @@ const TabNavigator = () => {
     return tabs.map((tab, index) => (
       <TouchableOpacity
         key={index}
-        style={[styles.tab, activeTab === index && styles.activeTab]}
+        style={styles.tab}
         onPress={() => handleTabPress(index)}
       >
+        {activeTab === index && <Image style={{ height: width * 0.012, width: width * 0.07 }} source={require('../assests/Bottom.png')} />}
         <Text style={styles.tabText}>{tab}</Text>
       </TouchableOpacity>
     ));
@@ -179,6 +220,12 @@ const TabNavigator = () => {
           </View>
         </ScrollView>
       </View>
+      
+      <View style={{ marginTop: 5 }}>
+        <LinearGradient colors={['rgba(51, 51, 51, 0.5)', 'rgba(217, 217, 217, 0)']} style={{ width: width, height: height * 0.019, alignItems: 'center' }} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} />
+      </View>
+
+
       <View style={styles.content}>
         {renderTabContent()}
       </View>
@@ -201,6 +248,9 @@ const ChatsTab = () => {
         <Text style={styles.songTitle}>{item.title}</Text>
         <Text style={styles.viewCount}>{item.views} views</Text>
       </View>
+      <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+        <Icon name={"chevron-right"} color={"white"} size={26} />
+      </View>
     </View>
   );
 
@@ -219,8 +269,8 @@ const ChatsTab = () => {
 
 const StatusTab = () => {
   const playlistData = [
-    { id: 1, title: 'Adele', views: '54' },
-    { id: 2, title: 'Artist 2', views: '94' },
+    { id: 1, title: 'Adele Panther', views: '54' },
+    { id: 2, title: 'Artist Paradise', views: '94' },
     { id: 3, title: 'Google Play Artists', views: '104' },
     { id: 4, title: 'Sam Fronk', views: '11.8k' },
   ];
@@ -231,6 +281,9 @@ const StatusTab = () => {
       <View style={styles.songDetails}>
         <Text style={styles.songTitle}>{item.title}</Text>
         <Text style={styles.viewCount}>{item.views} views</Text>
+      </View>
+      <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+        <Icon name={"chevron-right"} color={"white"} size={26} />
       </View>
     </View>
   );
@@ -261,6 +314,9 @@ const CallsTab = () => {
         <Text style={styles.songTitle}>{item.title}</Text>
         <Text style={styles.viewCount}>{item.views} views</Text>
       </View>
+      <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+        <Icon name={"chevron-right"} color={"white"} size={26} />
+      </View>
     </View>
   );
 
@@ -289,6 +345,9 @@ const ContactsTab = () => {
       <View style={styles.songDetails}>
         <Text style={styles.songTitle}>{item.title}</Text>
         <Text style={styles.viewCount}>{item.views} views</Text>
+      </View>
+      <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+        <Icon name={"chevron-right"} color={"white"} size={26} />
       </View>
     </View>
   );
@@ -320,6 +379,9 @@ const SettingsTab = () => {
         <Text style={styles.songTitle}>{item.title}</Text>
         <Text style={styles.viewCount}>{item.views} views</Text>
       </View>
+      <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+        <Icon name={"chevron-right"} color={"white"} size={26} />
+      </View>
     </View>
   );
 
@@ -341,7 +403,6 @@ const styles = {
     flex: 1,
   },
   tabBar: {
-    marginTop: height * 0.01,
     flexDirection: 'row',
     backgroundColor: 'black',
   },
@@ -350,16 +411,11 @@ const styles = {
     paddingVertical: 8,
     alignItems: 'center',
   },
-  activeTab: {
-    marginLeft: 12,
-    borderBottomWidth: 3,
-    borderBottomColor: '#42C83C',
-  },
   tabText: {
     paddingLeft: width * 0.05,
     paddingRight: 15,
     color: '#fff',
-    fontSize: height * 0.027,
+    fontSize: height * 0.025,
     fontWeight: 'bold',
   },
   content: {
@@ -367,16 +423,16 @@ const styles = {
   },
   songItem: {
     flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
     width: '100%',
-    marginLeft: 10,
   },
   songDetails: {
-    marginTop: 20,
-    marginLeft: 30,
-
+    marginLeft: 25,
+    width: '58%',
   },
   songTitle: {
-    fontSize: height * 0.022,
+    fontSize: height * 0.020,
     fontWeight: 'bold',
     color: "white"
   },
