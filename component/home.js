@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { View, Text, Image, TouchableOpacity, SafeAreaView, TextInput, FlatList, Dimensions, ScrollView, Modal, BackHandler, Alert, } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import style from '../styles/style';
 import Icon from 'react-native-vector-icons/Feather';
 import Entypo from 'react-native-vector-icons/Entypo';
+import "./global";
+
 
 
 
@@ -43,6 +45,33 @@ const Home = () => {
     setIsSearchVisible(false);
   }
 
+  // -----------------Go to next slide---------------------
+
+  const flatlistRef = useRef(null);
+
+  const [slide, setSlide] = useState(1);
+
+  const onPrevious = () => {
+    if (slide === 1) {
+      return;
+    } else {
+      if (flatlistRef.current) {
+        flatlistRef.current.scrollToIndex({ index: slide - 2 });
+      }
+      setSlide(slide - 1); // Update the slide state
+    }
+  };
+  const onNext = () => {
+    if (slide === Slider_Data.length) {
+      return;
+    } else {
+      if (flatlistRef.current) {
+        flatlistRef.current.scrollToIndex({ index: slide });
+      }
+      setSlide(slide + 1); 
+    }
+  };
+  
   return (
     <SafeAreaView style={style.container_main}>
 
@@ -90,14 +119,24 @@ const Home = () => {
       </View>
 
       <View style={{ flex: 0.26 }}>
-        <FlatList
-          data={[{ id: 1, first_name: "Popular", Title: "Nisa Rassan", sub: "Mahalini", image: "../assests/slider.png" },
-          { id: 2, first_name: "Semi-Popular", Title: "Green Base", sub: "Mahalini", image: "assests\slider.png" },
-          { id: 3, first_name: 'Rapster', Title: "Secrets Tribe", sub: "Mahalini", image: "assests\slider.png" }]}
 
+        <FlatList
+          ref={flatlistRef}
+          data={Slider_Data}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          pagingEnabled
+          pagingEnabled={true}
+          onScroll={Slider_Data => {
+            const offset = Slider_Data.nativeEvent.contentOffset.x / width;
+            const hasDecimal = offset - Math.floor(offset) !== 1;
+            if (!hasDecimal) {
+              const newSlide = offset + 1;
+              if (newSlide >= 1 || newSlide <= Slider_Data.length)
+                setSlide(newSlide)
+            }
+          }}
+          scrollEventThrottle={0}
+          keyExtractor={item => item.id}
           renderItem={({ item }) => {
             return (
               <View style={{
@@ -107,13 +146,11 @@ const Home = () => {
                 alignItems: "flex-end",
                 display: "flex",
                 flexDirection: "row",
-
               }}>
-
                 <TouchableOpacity disabled={true} style={style.homef} />
-                <View style={{ height: height * 0.1, marginRight: 8 }}>
+                <TouchableOpacity style={{ height: height * 0.1, marginRight: 8 }} onPress={onPrevious}>
                   <Icon name={"chevron-left"} color={"rgba(255, 255, 255, 0.4)"} size={28} />
-                </View>
+                </TouchableOpacity>
                 <View style={{ flexDirection: "column", width: width * 0.7, alignItems: 'flex-start', height: height / 6, justifyContent: 'center' }}>
                   <Text style={{ fontSize: height * 0.02, color: "white", paddingBottom: 5 }}>{item.first_name}</Text>
                   <Text style={{ fontSize: height * 0.033, fontWeight: 600, color: "white", paddingBottom: 5 }}>{item.Title}</Text>
@@ -122,11 +159,12 @@ const Home = () => {
                 <View style={{ position: 'absolute', left: width * 0.52 }}>
                   <Image source={require('../assests/slider.png')} style={{ width: width * 0.4, height: height * 0.2 }} />
                 </View>
-                <View style={{ height: height * 0.1 }}>
+                <TouchableOpacity style={{ height: height * 0.1 }} onPress={onNext} >
                   <Icon name={"chevron-right"} color={"rgba(255, 255, 255, 0.4)"} size={28} />
-                </View>
+                </TouchableOpacity>
               </View>)
-          }} />
+          }}
+        />
       </View>
 
       <View style={{ flex: 0.31, paddingLeft: 15 }}>
@@ -134,25 +172,23 @@ const Home = () => {
         <FlatList
           horizontal
           showsHorizontalScrollIndicator={false}
-          data={[1, 1, 1, 1]}
-          renderItem={() => {
+          data={TodayHits}
+          renderItem={({item}) => {
             return (
               <View style={{ marginTop: height * 0.01 }} >
                 <View >
-                  <Image style={[style.grid, { width: width * 0.3, height: height * 0.15, }]} source={require("../assests/Tiara.png")} />
+                  <Image style={[style.grid, { width: width * 0.3, height: height * 0.15, }]} source={item.image} />
                   <TouchableOpacity style={{ width: width * 0.05, height: width * 0.05, backgroundColor: '#818181', borderRadius: width * height, position: 'absolute', transform: [{ translateY: height * 0.118 }, { translateX: width * 0.236 }], justifyContent: 'center', alignItems: 'center' }}>
                     <Image style={{ width: 7.73, height: 8.15 }} source={require("../assests/Vector.png")} />
                   </TouchableOpacity>
-
-
                 </View>
 
                 <View style={{ width: width * 0.27, marginLeft: 5 }}>
                   <ScrollView horizontal={true}
                     showsHorizontalScrollIndicator={false}>
                     <View>
-                      <Text style={{ color: "white", fontSize: 14, marginTop: 5 }}>Black Jeans</Text>
-                      <Text style={{ color: "#888", fontSize: 11, }}>Going Deep in Water in the summer.</Text>
+                      <Text style={{ color: "white", fontSize: 14, marginTop: 5 }}>{item.heading}</Text>
+                      <Text style={{ color: "#888", fontSize: 11, }}>{item.subtitle}</Text>
                     </View>
                   </ScrollView>
                 </View>
@@ -220,7 +256,7 @@ const TabNavigator = () => {
           </View>
         </ScrollView>
       </View>
-      
+
       <View style={{ marginTop: 5 }}>
         <LinearGradient colors={['rgba(51, 51, 51, 0.5)', 'rgba(217, 217, 217, 0)']} style={{ width: width, height: height * 0.019, alignItems: 'center' }} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} />
       </View>

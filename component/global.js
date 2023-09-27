@@ -20,6 +20,16 @@ Mostly = [
   { id: 9, title: 'Shubh Njawd Lo...', views: 'Asynchrounous ', imagePath: require('../assests/most1.png') },
 ];
 
+// Home Page
+Slider_Data = [{ id: 1, first_name: "Popular", Title: "Nisa Rassan", sub: "Mahalini"},
+{ id: 2, first_name: "Semi-Popular", Title: "Green Base", sub: "Mahalini" },
+{ id: 3, first_name: 'Rapster', Title: "Secrets Tribe", sub: "Mahalini" }]
+
+TodayHits = [{ id: 1, heading: "Last Ride", subtitle: "Sidhu Mosewala",  image: require("../assests/sad.jpg")},
+{ id: 2, heading: "Never Ask Him", subtitle: "Atif Aslam",  image: require("../assests/TTiara.png") },
+{ id: 3, heading: 'Of Course!', subtitle: "Arjeet Singh, B Prakk",  image: require("../assests/Gangga.png") },
+{ id: 4, heading: 'Black Jeans', subtitle: "Going deep in water",  image: require("../assests/Tiara.png")}]
+
 Local = [
   {
     title: 'Just Listen',

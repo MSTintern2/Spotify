@@ -68,16 +68,57 @@ const Playlist = ({ navigation }) => {
                   />
                 </TouchableOpacity>
               </View>
+
+
+              <View style={{ flex: 0.9, marginLeft: 15, marginRight: 15 }}>
+                <FlatList
+                  data={laylist.playlists.filter(item => item.name.toLowerCase().includes(search.toLowerCase()))}
+                  numColumns={2}
+                  renderItem={({ item, index }) => {
+                    return (
+                      <View style={{ margin: width * 0.02 }}>
+
+                        <TouchableOpacity onPress={() => {
+                          navigation.navigate('Openplaylist', { playlist: laylist.playlists, index: index })
+                          setAsync();
+                        }} style={{
+                          flexDirection: 'column'
+                        }}>
+                          <View style={[style.grid, {
+                            width: width * 0.4, height: height * 0.2, backgroundColor: 'lightgrey', shadowColor: 'white',
+                            shadowOffset: {
+                              width: 0,
+                              height: 1,
+                            },
+                            shadowOpacity: 0.25,
+                            shadowRadius: 0,
+                            elevation: 10,
+                          }]}>
+                            <Image style={[style.grid, { width: width * 0.4, height: height * 0.2 }]} source={{ uri: item.image }} />
+                          </View>
+                        </TouchableOpacity>
+
+                        <Text style={{ color: "white", fontSize: 14, marginTop: 9 }}>
+                          {item.name}
+                        </Text>
+                        <Text style={{ color: "#888", fontSize: 12 }}>{item.songs.length} Songs</Text>
+                      </View>
+                    )
+                  }}
+                  keyExtractor={(item, index) => index.toString()}
+                />
+
+              </View>
             </View>
           </Modal>
         ) : (
-            <View style={{ flexDirection: "row", alignItems: "center", gap: 80 }}>
-              <TouchableOpacity onPress={a}>
-                <Icon name={"search"} color={"white"} size={24} />
-              </TouchableOpacity>
-              <Text style={{ color: 'white', fontSize: 26, fontWeight: 700 }} >Playlist</Text>
-              <Icon name={"plus"} color={"white"} size={28} />
-            </View>
+          <View style={{ flexDirection: "row", alignItems: "center", gap: 80 }}>
+            <TouchableOpacity onPress={a}>
+              <Icon name={"search"} color={"white"} size={24} />
+            </TouchableOpacity>
+            <Text style={{ color: 'white', fontSize: 26, fontWeight: 700 }} >Playlist</Text>
+            <Icon name={"plus"} color={"white"} size={28} />
+          </View>
         )}
       </View>
 
