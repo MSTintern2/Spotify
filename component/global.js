@@ -35,6 +35,16 @@ Local = [
     title: 'Just Listen',
     artist: 'Brown Boys',
     url: require('../assests/sound/Song1.mp3')
+  },
+  {
+    title: 'Bangton',
+    artist: 'Sidhu Mossewala',
+    url: require('../assests/sound/Song2.mp3')
+  },
+  {
+    title: 'Brown Shortie',
+    artist: 'Brown Boys & Sidhu Mossewala',
+    url: require('../assests/sound/Song3.mp3')
   }
 ]
 
